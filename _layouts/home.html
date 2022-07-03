@@ -6,7 +6,7 @@ layout: default
 
 {%- if posts.size > 0 -%}
     <div id="postGrid">
-        {%- for post in posts -%}
+        {%- for post in site.posts -%}
         <div class="postItem">
             <h4>{{ post.title | escape }}</h4>
             <p>{{ post.excerpt }}</p>
