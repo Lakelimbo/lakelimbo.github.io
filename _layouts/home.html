@@ -1,11 +1,11 @@
 ---
 layout: default
 ---
-<div id="postWrapper">
+<div id="postGrid">
     {%- for post in posts -%}
-    <div class="postGrid">
-        <h4>{{ post.title }}</h4>
-        <p>{{ post.content | strip_html | truncatedwords: 50 }}</p>
+    <div class="postItem">
+        <h4>{{ post.title | escape }}</h4>
+        <p>{{ post.excerpt | strip_html | truncatedwords: 50 }}</p>
     </div>
     {%- endfor -%}
 </div>
