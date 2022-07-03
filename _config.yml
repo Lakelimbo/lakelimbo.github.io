@@ -3,6 +3,7 @@ author:
   name: Lakelimbo
 description: Testing stuff for now
 show_excerpts: true
+baseurl: lakelimbo.github.io
 
 plugins:
   - jekyll-feed
