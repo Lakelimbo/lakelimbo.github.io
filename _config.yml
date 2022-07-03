@@ -1,8 +1,8 @@
 title: Lakelimbo
 author:
   name: Lakelimbo
-description: Testing stuff now
-show_excerpts: false
+description: Testing stuff for now
+show_excerpts: true
 
 plugins:
   - jekyll-feed

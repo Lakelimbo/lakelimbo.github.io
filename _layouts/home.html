@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<div id="postWrapper">
+    {% for post in paginator.posts %}
+    <div class="postGrid">
+        <h4>{{ post.title }}</h4>
+        <p>{{ post.content | strip_html | truncatedwords: 50 }}</p>
+    </div>
+</div>
