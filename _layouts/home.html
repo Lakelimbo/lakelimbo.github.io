@@ -4,9 +4,11 @@ layout: default
 
 {{ content }}
 
+{% assign posts = site.posts %}
+
 {%- if posts.size > 0 -%}
     <div id="postGrid">
-        {%- for post in site.posts -%}
+        {%- for post in posts -%}
         <div class="postItem">
             <h4>{{ post.title | escape }}</h4>
             <p>{{ post.excerpt }}</p>
