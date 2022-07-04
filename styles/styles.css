@@ -93,5 +93,5 @@ h1.hyper {
 }
 
 .animHueRotate {
-  animation: hueRotate 120s ease-in-out;
+  animation: hueRotate 40s ease-in-out infinite;
 }
