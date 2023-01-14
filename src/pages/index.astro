@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../layouts/Container.astro";
+
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Items from "../components/Items.astro";
+import Art from "../components/Art.astro";
+import Music from "../components/Music.astro";
+
+import { heroText } from "../scripts/heroText";
+import { programming, design } from "../scripts/experience";
+import { art, music } from "../scripts/art";
+
+const HeroEN = {
+   h1: heroText.h1.en,
+   p1: heroText.p1.en,
+   p2: heroText.p2.en,
+   langSwitch: heroText.links.langSwitch.en,
+   langSwitchLink: heroText.links.langSwitch.enLink,
+   contact: heroText.links.contact.en,
+}
+---
+
+<Layout title="Lake">
+   <Container>
+      <Hero {...HeroEN} />
+      <Section class="item-section" name={programming.section.en}>
+         <Items blocks={programming.blocks}>
+            {programming.content.en}
+         </Items>
+      </Section>
+      <Section class="item-section" name={design.section.en}>
+         <Items blocks={design.blocks}>
+            {design.content.en}
+         </Items>
+      </Section>
+      <Section name="Art">
+         <p>Some of my drawings... and yes, I like drawing Sonic.</p>
+         <Art images={art} />
+      </Section>
+      <Section name="Music">
+         <p>Mostly remixes/covers</p>
+         <Music tracks={music} />
+      </Section>
+   </Container>
+</Layout>

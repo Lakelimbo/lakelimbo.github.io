@@ -1,0 +1,23 @@
+---
+interface Props {
+   blocks: Blocks[];
+}
+
+interface Blocks {
+   [key: string]: string;
+}
+
+const { blocks }: Props = Astro.props;
+---
+
+<div class="item-flex">
+   {
+      blocks.map((item) => (
+         <div class="item-block" style={`--color: ${item.color}`}>
+            <i class={item.icon} />
+            {item.name}
+         </div>
+      ))
+   }
+</div>
+<slot />

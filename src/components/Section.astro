@@ -1,0 +1,8 @@
+---
+const { name = "Showcase", ...props } = Astro.props
+---
+
+<section {...props}>
+    <h2>{name}</h2>
+    <slot/>
+</section>

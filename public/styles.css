@@ -1,0 +1,269 @@
+:root {
+    --light: #b8b8b8;
+    --dark: #0e0e0e;
+    --green: #0fc20f;
+    --yellow: #ffbb00;
+    --black: #000;
+    --white: #fff;
+
+    --font-sans: Roboto, system-ui, sans-serif;
+    --font-mono: monospace;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+    font: 1rem var(--font-sans);
+}
+
+body::before,
+body::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body::before {
+    background-image: url("hero_grid.png");
+    background-size: cover;
+    background-repeat: repeat no-repeat;
+    opacity: .2;
+    animation: 30s hue-rotate infinite;
+    z-index: -2;
+}
+
+body::after {
+    background-image: linear-gradient(to bottom, transparent 87%, var(--dark));
+    z-index: -1;
+}
+
+h2 {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.container {
+    max-width: 1536px;
+    padding: 0 1rem;
+    margin: auto;
+}
+
+#hero {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    margin-top: 20vh;
+    text-align: center;
+}
+
+#hero h1 {
+    color: var(--white);
+    font: 900 italic 3rem var(--font-sans);
+}
+
+@media (min-width: 576px) {
+    #hero {
+        text-align: start;
+    }
+
+    #hero h1 {
+        font-size: 4rem;
+    }
+}
+
+#hero p {
+    margin-bottom: 0.75rem;
+}
+
+#hero p:first-of-type span {
+    color: var(--white);
+    font: 700 italic 1rem var(--font-sans);
+}
+
+#hero a {
+    text-decoration: none;
+    color: var(--white);
+    padding: .25rem 1rem;
+}
+
+#lang-switch {
+    display: inline-block;
+    color: var(--black)!important;
+    text-decoration: none;
+    background-color: var(--yellow);
+    border-radius: 100px;
+    transition: all .15s ease-in-out;
+}
+
+#lang-switch:hover {
+    background-color: var(--green);
+}
+
+.item-section {
+    margin-bottom: 1rem;
+}
+
+.item-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.item-block {
+    text-align: center;
+    font-weight: 600;
+    width: 120px;
+    padding: 1rem;
+    border-radius: .75rem;
+    backdrop-filter: blur(12px) brightness(1.2);
+    transition: box-shadow, color .1s ease-in-out;
+}
+
+@media (min-width: 576px) {
+    .item-flex {
+        justify-content: flex-start;
+    }
+
+    .item-block {
+        width: 150px
+    }
+}
+
+.item-block i {
+    display: block;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.item-block:hover {
+    outline: 2px solid var(--color);
+    box-shadow: 0 0 10px var(--color);
+    background-color: rgba(255, 255, 255, .05);
+    color: var(--white);
+}
+
+.item-block:hover i {
+    color: var(--color)
+}
+
+.astro-logo {
+    --image: url("https://astro.build/assets/press/simple-logomark-dark.svg");
+    width: 100%;
+    height: 80px;
+    background-image: url("https://astro.build/assets/press/simple-logomark-dark.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0.7);
+}
+
+.item-block:hover .astro-logo {
+    filter: sepia(1) invert(1) brightness(20)contrast(0.5) hue-rotate(115deg)
+}
+
+.mediawiki-logo {
+    width: 100%;
+    height: 80px;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/a6/MediaWiki-2020-icon.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(1) contrast(0);
+}
+
+.item-block:hover .mediawiki-logo {
+    filter: none !important;
+}
+
+.art-container {
+    --count: 1;
+    --gap: 1rem;
+    -webkit-column-count: var(--count);
+    -moz-column-count: var(--count);
+    column-count: var(--count);
+    column-gap: var(--gap);
+    -webkit-column-gap: var(--gap);
+    -moz-column-gap: var(--gap);
+    margin-top: 1rem;
+}
+
+@media (min-width: 576px) {
+    .art-container {
+        --count: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .art-container {
+        --count: 3;
+    }
+}
+
+.art-container div {
+    display: inline-block;
+    width: 100%;
+}
+
+.art-container img {
+    max-width: 100%;
+    width: 500px;
+    height: 100%;
+    border-radius: 0.75rem;
+}
+
+.music-container {
+    margin-top: 1rem;
+}
+
+footer {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    padding: 1rem;
+}
+
+footer::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%231a0d27' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%23230b36' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%23290941' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%232f064b' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23340053' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: 30s hue-rotate infinite;
+    opacity: .5;
+}
+
+footer img {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 5rem auto auto;
+}
+
+@keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg) brightness(1);
+    }
+
+    100% {
+        filter: hue-rotate(360deg) brightness(1.25);
+    }
+}
