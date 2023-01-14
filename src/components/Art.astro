@@ -19,7 +19,7 @@ const { images, lang = "en" }: Props = Astro.props;
       images.map((art) => (
          <div>
             <img
-               src={`art/${art.src}`}
+               src={`../../art/${art.src}`}
                alt={lang === "pt" ? art.alt.pt : art.alt.en}
             />
          </div>
