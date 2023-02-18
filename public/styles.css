@@ -126,6 +126,8 @@ h2 {
     text-align: center;
     font-weight: 600;
     width: 120px;
+    max-width: 175px;
+    flex: auto;
     padding: 1rem;
     border-radius: .75rem;
     backdrop-filter: blur(12px) brightness(1.2);
