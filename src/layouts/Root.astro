@@ -1,0 +1,31 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
+
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+type Props = {
+   theme?: string;
+   class?: string;
+   title?: string;
+   description?: string;
+};
+
+const {
+   theme = "mocha",
+   class: className = "bg-crust text-text",
+   title = SITE_TITLE,
+   description = SITE_DESCRIPTION,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <BaseHead title={title} description={description} />
+   </head>
+   <body class:list={["antialiased min-h-screen", theme, className]}>
+      <slot />
+   </body>
+</html>

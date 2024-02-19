@@ -1,0 +1,138 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
+import Root from "./Root.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<Root title={title} description={description}>
+   <Header headerClass="bg-blue text-blue-900" logoFill="fill-blue-900" />
+   <main class="container pb-20">
+      <div class="mb-10">
+         {
+            heroImage && (
+               <img
+                  width={1020}
+                  height={510}
+                  src={heroImage}
+                  alt={title}
+                  class="block mx-auto rounded-xl"
+               />
+            )
+         }
+         <h1
+            class="font-display text-6xl lg:text-7xl font-black my-4 text-center"
+         >
+            {title}
+         </h1>
+         <div class="text-center font-medium text-lg">
+            <FormattedDate date={pubDate} />
+            {
+               updatedDate && (
+                  <div>
+                     Last updated on <FormattedDate date={updatedDate} />
+                  </div>
+               )
+            }
+         </div>
+      </div>
+      <article class="max-w-[1200px] mx-auto">
+         <slot />
+      </article>
+   </main>
+</Root>
+
+<style is:global>
+	article p {
+		margin-bottom: 1rem;
+	}
+	article h1, h2 {
+		font-family: "Space Grotesk Variable";
+		font-weight: 900;
+	}
+	article h1, h2, h3, h4, h5, h6 {
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+	}
+	article h1 {
+		font-size: 4rem;
+	}
+	article h2 {
+		font-size: 3rem;
+	}
+	article h3 {
+		font-size: 2.5rem;
+	}
+	article h4 {
+		font-size: 2rem;
+	}
+	article h5 {
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+	article h6 {
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
+	article pre {
+		padding: 1rem;
+		border-radius: 1rem;
+		margin-bottom: 1rem;
+		background-color: #000!important;
+	}
+	article code {
+		color: rgb(var(--ctp-pink));
+		background-color: rgb(var(--ctp-surface0));
+		padding: 2px 5px;
+		border-radius: 5px;
+	}
+	article pre code {
+		background-color: #000!important;
+	}
+	article ul {
+		list-style-type: disc;
+		margin: 1rem;
+	}
+	article ol {
+		list-style-type: decimal;
+		margin: 1rem;
+	}
+	article ol li {
+		padding-left: .25rem;
+	}
+	article kbd {
+		background: rgb(var(--ctp-surface0));
+		padding: 2px 5px;
+		border-radius: 5px;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+	article blockquote {
+		border-left: 4px solid rgb(var(--ctp-pink));
+		padding: 1rem;
+		background-color: rgba(var(--ctp-base));
+		border-radius: 0 1rem 1rem 0;
+	}
+	article table thead {
+		font-weight: bold;
+	}
+	article table thead th, article table thead td {
+		background-color: rgb(var(--ctp-pink));
+		padding: 1rem;
+		color: #000;
+	}
+	article table thead th:first-of-type, article table thead td:first-of-type {
+		border-radius: 1rem 0 0 1rem;
+	}
+	article table thead th:last-of-type, article table thead td:last-of-type {
+		border-radius: 0 1rem 1rem 0;
+	}
+	article table tbody td, article table tbody th {
+		padding: 1rem;
+		border-bottom: 1px solid rgb(var(--ctp-surface1));
+	}
+</style>

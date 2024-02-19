@@ -1,0 +1,60 @@
+---
+import Root from "@layouts/Root.astro";
+
+import Header from "@components/Header.astro";
+
+const items = [
+   {
+      name: "OpusFlow",
+      url: "https://opusflow.io",
+      img: "opusflow.jpeg",
+   },
+   {
+      name: "WiKirby",
+      url: "https://wikirby.com",
+      img: "wikirby.jpeg",
+   },
+   {
+      name: "MiiWiki",
+      url: "https://miiwiki.org",
+      img: "miiwiki.jpeg",
+   },
+];
+---
+
+<Root title="Projects / Lake" description="Some things I have worked on.">
+   <Header />
+   <main class="container">
+      <h1 class="font-display font-black text-5xl mb-4 text-center">
+         Projects
+      </h1>
+      <p class="text-lg text-center">
+         Projects that I either made or actively participate in their
+         maintenance.
+      </p>
+      <section class="mt-10 flex flex-wrap gap-4 justify-evenly">
+         {
+            items.map((item) => (
+               <a
+                  href={item.url || undefined}
+                  target="_blank"
+                  class="bg-mantle block p-2 rounded-xl hover:bg-surface0 hover:ring-4 hover:ring-offset-4 hover:ring-offset-crust ring-surface0 transition-all"
+               >
+                  <img
+                     src={`/specific/projects/${item.img}`}
+                     alt={item.name}
+                     class="block rounded-xl w-[300px] lg:w-[400px]"
+                     width={400}
+                  />
+                  <div class="mt-2 text-center">
+                     <h2 class="font-display text-4xl mb-2 font-black">
+                        {item.name}
+                     </h2>
+                     {item.url && <code>{item.url}</code>}
+                  </div>
+               </a>
+            ))
+         }
+      </section>
+   </main>
+</Root>

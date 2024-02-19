@@ -1,0 +1,40 @@
+---
+import { menu } from "@lib/site";
+
+import Logo from "./Logo.astro";
+
+const {
+   headerClass = "bg-yellow text-yellow-900",
+   logoFill = "fill-yellow-900",
+} = Astro.props;
+
+function currentPath(url: string) {
+   if (Astro.url.pathname === url) {
+      return "bg-crust text-white";
+   }
+}
+---
+
+<header
+   class:list={[
+      "container my-4 p-4 mb-10 rounded-full flex flex-row gap-4 items-center font-medium justify-center",
+      headerClass,
+   ]}
+>
+   <a href="/" class="block w-28">
+      <Logo class:list={["max-w-28", logoFill]} />
+   </a>
+   <nav class="pl-20 space-x-4 hidden md:block">
+      {
+         menu.map((item) => (
+            <a
+               href={item.href}
+               class:list={[
+                  "rounded-full py-2 px-4 hover:bg-crust hover:text-white transition-colors duration-75",
+                  currentPath(item.href),
+               ]}
+            >{item.title}</a>
+         ))
+      }
+   </nav>
+</header>

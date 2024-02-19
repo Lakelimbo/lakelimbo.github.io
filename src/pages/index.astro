@@ -1,47 +1,180 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Container from "../layouts/Container.astro";
+import Root from "@layouts/Root.astro";
 
-import Hero from "../components/Hero.astro";
-import Section from "../components/Section.astro";
-import Items from "../components/Items.astro";
-import Art from "../components/Art.astro";
-import Music from "../components/Music.astro";
+import Logo from "@components/Logo.astro";
 
-import { heroText } from "../scripts/heroText";
-import { programming, design } from "../scripts/experience";
-import { art, music } from "../scripts/art";
+import { menu } from "@lib/site";
 
-const HeroEN = {
-   h1: heroText.h1.en,
-   p1: heroText.p1.en,
-   p2: heroText.p2.en,
-   langSwitch: heroText.links.langSwitch.en,
-   langSwitchLink: heroText.links.langSwitch.enLink,
-   contact: heroText.links.contact.en,
-}
+import { Icon } from "astro-icon/components";
+
+const techs = [
+   {
+      name: "TypeScript",
+      icon: "bxl:typescript",
+   },
+   {
+      name: "Node.js",
+      icon: "bxl:nodejs",
+   },
+   {
+      name: "React",
+      icon: "bxl:react",
+   },
+   {
+      name: "Next.js",
+      icon: "file-icons:nextjs",
+   },
+   {
+      name: "Svelte + Kit",
+      icon: "file-icons:svelte",
+   },
+   {
+      name: "Astro",
+      icon: "devicon-plain:astro",
+   },
+   {
+      name: "TailwindCSS",
+      icon: "bxl:tailwind-css",
+   },
+   {
+      name: "Bootstrap",
+      icon: "devicon-plain:bootstrap",
+   },
+   {
+      name: "Sass/SCSS",
+      icon: "bxl:sass"
+   },
+   {
+      name: "Lua",
+      icon: "file-icons:lua"
+   },
+   {
+      name: "Docker",
+      icon: "bxl:docker"
+   },
+   {
+      name: "PostgreSQL",
+      icon: "bxl:postgresql"
+   },
+   {
+      name: "SQLite",
+      icon: "file-icons:sqlite"
+   },
+   {
+      name: "Supabase",
+      icon: "devicon-plain:supabase"
+   },
+   {
+      name: "MediaWiki",
+      icon: "file-icons:mediawiki"
+   },
+   {
+      name: "Photoshop",
+      icon: "devicon-plain:photoshop"
+   },
+   {
+      name: "Illustrator",
+      icon: "devicon-plain:illustrator"
+   },
+   {
+      name: "Adobe XD",
+      icon: "devicon-plain:xd"
+   },
+   {
+      name: "Figma",
+      icon: "devicon-plain:figma"
+   },
+   {
+      name: "Inkscape",
+      icon: "devicon-plain:inkscape"
+   },
+];
 ---
 
-<Layout title="Lake">
-   <Container>
-      <Hero {...HeroEN} />
-      <Section class="item-section" name={programming.section.en}>
-         <Items blocks={programming.blocks}>
-            {programming.content.en}
-         </Items>
-      </Section>
-      <Section class="item-section" name={design.section.en}>
-         <Items blocks={design.blocks}>
-            {design.content.en}
-         </Items>
-      </Section>
-      <Section name="Art">
-         <p>Some of my drawings... and yes, I like drawing Sonic.</p>
-         <Art images={art} />
-      </Section>
-      <Section name="Music">
-         <p>Mostly remixes/covers</p>
-         <Music tracks={music} />
-      </Section>
-   </Container>
-</Layout>
+<Root>
+   <div class="min-h-screen flex items-center">
+   <main class="container py-8 flex flex-col lg:flex-row items-center gap-10">
+      <div class="text-lg">
+         <Logo id="logo" class="max-w-44 fill-pink mb-10" />
+         <section class="space-y-4 mb-10">
+            <p>Hello, I am Lake (real name is Gabriel).</p>
+            <p>
+               I am a programmer (mostly web-dev) and graphical designer from
+               Brazil. And I am one of those weirdos that actually like building
+               UIs and messing with CSS.
+            </p>
+            <p>
+               I'd rather keep some details of myself private, but if you're
+               interested in contacting me, you can reach out to my Discord or
+               send me an email.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 text-xl">
+               <a
+                  href="github.com/Lakelimbo"
+                  class="block bg-white py-2 px-4 rounded-full text-black hover:bg-white/80 transition-colors"
+                  ><Icon name="bi:github" class="inline-block mr-2" />GitHub</a
+               >
+               <a
+                  href="mailto:lakelimbo@proton.me"
+                  class="block bg-yellow-500 py-2 px-4 rounded-full text-yellow-950 hover:bg-yellow-500/80 transition-colors"
+                  ><Icon name="bi:at" class="inline-block mr-1" />Email</a
+               >
+               <div class="bg-blue-600 py-2 px-4 rounded-full text-blue-100">
+                  <Icon name="bi:discord" class="inline-block mr-2" />Discord: <code
+                     class="font-bold">lakelimbo</code
+                  >
+               </div>
+            </div>
+         </section>
+         <section>
+            <p>Here are some technologies I work with:</p>
+            <ul class="font-medium text-center flex flex-wrap gap-x-4 gap-y-8 justify-evenly !mt-10">
+               {techs.map(tech => (
+                  <li class="w-[6.5rem]"><Icon name={tech.icon} size={50} class="mx-auto mb-1" /> {tech.name}</li>
+               ))}
+            </ul>
+         </section>
+      </div>
+      <nav class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 text-center gap-4 font-medium lg:-order-1 lg:max-w-[197px] lg:mr-10">
+         {
+            menu.map((item) => (
+               <a
+                  href={item.href}
+                  class:list={[
+                     "block px-6 py-4 rounded-xl transition-all lg:max-w-[540px]",
+                     item.class,
+                     "hover:ring-4 hover:ring-offset-4 hover:ring-offset-crust",
+                  ]}
+               >
+                  <div class="h-[96px] flex items-center justify-center mb-4">
+                     <img
+                        src={`/specific/index/${item.img}`}
+                        alt={item.title}
+                        width={75}
+                     />
+                  </div>
+                  <h2 class="font-display text-xl font-black mb-2">
+                     {item.title}
+                  </h2>
+               </a>
+            ))
+         }
+      </nav>
+   </main>
+</div>
+</Root>
+
+<style>
+   @keyframes hue-rotate {
+      0% {
+         filter: hue-rotate(0deg);
+      }
+      100% {
+         filter: hue-rotate(360deg);
+      }
+   }
+
+   #logo {
+      animation: hue-rotate 60s infinite linear;
+   }
+</style>

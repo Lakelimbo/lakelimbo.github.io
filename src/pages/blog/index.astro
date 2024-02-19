@@ -1,0 +1,43 @@
+---
+import Root from "@layouts/Root.astro";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Header from "../../components/Header.astro";
+
+const posts = (await getCollection("blog")).sort(
+   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<Root title="Blog / Lake" description="My collection of blogposts">
+   <Header headerClass="bg-blue text-blue-900" logoFill="fill-blue-900" />
+   <main class="container grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+         posts.map((post) => (
+            <a
+               href={`/blog/${post.slug}`}
+               class="block bg-mantle p-4 rounded-xl transition-all hover:bg-surface0 hover:ring-4 hover:ring-offset-4 hover:ring-offset-crust ring-surface0"
+            >
+               {post.data.heroImage && (
+                  <img
+                     width={720}
+                     height={360}
+                     src={post.data.heroImage}
+                     alt={post.data.title}
+                     class="rounded-xl"
+                  />
+               )}
+               <div class="mt-2 space-y-3">
+                  <h2 class="font-display text-3xl font-black">
+                     {post.data.title}
+                  </h2>
+                  <p class="text-medium">{post.data.description}</p>
+                  <p>
+                     <FormattedDate date={post.data.pubDate} />
+                  </p>
+               </div>
+            </a>
+         ))
+      }
+   </main>
+</Root>
